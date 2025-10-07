@@ -1,1 +1,1 @@
-battery_percent:84\non_ac:False\ncpu_percent:26.6\n
+battery_percent:83\non_ac:False\ncpu_percent:30.2\n

@@ -46,7 +46,6 @@ int priorityFromLabel(const string& label) {
 int main() {
     cout << "🌿 EcoScheduler v3 — CSV Logging Enabled\n";
 
-    // --- Load monitor info ---
     double battery = 100;
     bool on_ac = true;
     ifstream mon("monitor.txt");
@@ -60,15 +59,12 @@ int main() {
         battery = stod(trim(val));
     }
 
-    // --- Load profiles ---
     ifstream pfile("profiles.json");
     string prof((istreambuf_iterator<char>(pfile)), istreambuf_iterator<char>());
     cout << "Profiles: " << prof << "\n";
 
-    // --- Load tasks ---
     vector<Task> tasks = loadTasks("tasks.txt");
 
-    // --- Determine task labels and sort by priority ---
     sort(tasks.begin(), tasks.end(), [&](const Task& a, const Task& b){
         string labelA = "medium", labelB = "medium";
         if (prof.find("\"" + a.name + "\": \"low\"") != string::npos) labelA = "low";
@@ -92,7 +88,6 @@ int main() {
     double energy = (label == "low" ? 0.5 : label == "medium" ? 1.0 : 2.0) * t.seconds;
 
     bool deferred = false;
-    // --- Autonomous defer ---
     if (!on_ac && battery < 30 && label == "high") {
         deferred = true;
         cout << "⚠️  Battery low. Automatically deferring high-energy task: " << t.name << "\n";
@@ -105,21 +100,20 @@ int main() {
     if (deferred) {
         csv << "\"" << timeStr << "\"," << t.name << ",deferred," << label << "," << energy << "," << battery << "," << (on_ac ? 1 : 0) << "\n";
         log << t.name << ": deferred (" << label << ", " << energy << ")\n";
-        continue; // skip execution
+        continue; 
     }
 
-    // Execute task
-    cout << "🔹 Executing " << t.name << " (" << t.seconds << "s, " << label << ")\n";
+    cout << "\n 🔹 Executing " << t.name << " (" << t.seconds << "s, " << label << ") \n";
     string cmd = "./task_worker CPU " + to_string(t.seconds);
     system(cmd.c_str());
 
-    log << t.name << ": executed (" << label << ", " << energy << ")\n";
+    log << t.name << ": executed (" << label << ", " << energy << ") \n";
     csv << "\"" << timeStr << "\"," << t.name << ",executed," << label << "," << energy << "," << battery << "," << (on_ac ? 1 : 0) << "\n";
 }
 
 
     csv.close();
     log.close();
-    cout << "✅ Run complete — logs.txt and logs.csv written.\n";
+    cout << "✅ Run complete — logs.txt and logs.csv written. \n";
     return 0;
 }
