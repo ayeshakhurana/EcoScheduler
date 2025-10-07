@@ -29,8 +29,16 @@ with open("logs.csv", newline='') as f:
         if len(row) < 7: 
             continue
         timestamp, task, action, label, energy, battery, on_ac = row
+        try:
+            energy = float(energy.strip())
+            battery = float(battery.strip())
+            on_ac = int(on_ac.strip())
+        except Exception as e:
+            print(f"⚠️ Skipping row due to parse error: {row} ({e})")
+            continue
+
         c.execute('INSERT INTO logs (timestamp,task,action,label,energy,battery,on_ac) VALUES (?,?,?,?,?,?,?)',
-                  (timestamp, task, action, label, float(energy), float(battery), int(on_ac)))
+                  (timestamp.strip(), task.strip(), action.strip(), label.strip(), energy, battery, on_ac))
 
 conn.commit()
 conn.close()
