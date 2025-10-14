@@ -1,1 +1,1 @@
-battery_percent:83\non_ac:False\ncpu_percent:30.2\n
+battery_percent:89\non_ac:True\ncpu_percent:95.9\nload_category:high\nload_factor:0.889\nsystem_stress:high\noverall_factor:0.48\n

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoScheduler Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/dashboard.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <i class="fas fa-leaf"></i>
+                    <h1>EcoScheduler</h1>
+                </div>
+                <div class="header-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Status</span>
+                        <span class="stat-value" id="system-status">Loading...</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Last Update</span>
+                        <span class="stat-value" id="last-update">--</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- System Status Cards -->
+            <section class="status-cards">
+                <div class="card battery-card">
+                    <div class="card-header">
+                        <i class="fas fa-battery-three-quarters"></i>
+                        <h3>Battery Status</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="battery-display">
+                            <div class="battery-level" id="battery-level">
+                                <div class="battery-fill" id="battery-fill"></div>
+                            </div>
+                            <div class="battery-info">
+                                <span class="battery-percent" id="battery-percent">--%</span>
+                                <span class="battery-status" id="battery-status">--</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card cpu-card">
+                    <div class="card-header">
+                        <i class="fas fa-microchip"></i>
+                        <h3>CPU Usage</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="cpu-display">
+                            <div class="cpu-gauge" id="cpu-gauge">
+                                <div class="cpu-fill" id="cpu-fill"></div>
+                            </div>
+                            <span class="cpu-percent" id="cpu-percent">--%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card tasks-card">
+                    <div class="card-header">
+                        <i class="fas fa-tasks"></i>
+                        <h3>Active Tasks</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="tasks-summary">
+                            <div class="task-count" id="task-count">--</div>
+                            <div class="task-breakdown" id="task-breakdown">
+                                <div class="task-type">
+                                    <span class="task-dot high"></span>
+                                    <span>High Energy</span>
+                                </div>
+                                <div class="task-type">
+                                    <span class="task-dot medium"></span>
+                                    <span>Medium Energy</span>
+                                </div>
+                                <div class="task-type">
+                                    <span class="task-dot low"></span>
+                                    <span>Low Energy</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card logs-card">
+                    <div class="card-header">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Activity</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="activity-stats">
+                            <div class="activity-item">
+                                <span class="activity-value" id="recent-logs">--</span>
+                                <span class="activity-label">Recent Logs</span>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-value" id="total-tasks">--</span>
+                                <span class="activity-label">Total Tasks</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Task Management Section -->
+            <section class="task-management">
+                <div class="section-header">
+                    <h2><i class="fas fa-cogs"></i> Task Management</h2>
+                    <div class="task-controls">
+                        <button class="btn btn-secondary" id="detect-processes">
+                            <i class="fas fa-search"></i> Auto-Detect
+                        </button>
+                        <button class="btn btn-primary" id="refresh-tasks">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                        <button class="btn btn-accent" id="run-energy-scheduler">
+                            <i class="fas fa-chart-gantt"></i> Schedule Tasks
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="task-grid" id="task-grid">
+                    <!-- Tasks will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Schedule Visualization Section -->
+            <section class="schedule-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-chart-gantt"></i> Task Schedule</h2>
+                    <div class="schedule-controls">
+                        <button class="btn btn-secondary" id="refresh-schedule">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                        <button class="btn btn-info" id="view-gantt">
+                            <i class="fas fa-image"></i> View Gantt Chart
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="schedule-summary" id="schedule-summary">
+                    <!-- Schedule summary will be populated by JavaScript -->
+                </div>
+                
+                <div class="gantt-container" id="gantt-container" style="display: none;">
+                    <img id="gantt-chart" src="" alt="Gantt Chart" style="max-width: 100%; height: auto;">
+                </div>
+            </section>
+
+            <!-- Recent Logs Section -->
+            <section class="logs-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-list-alt"></i> Recent Activity</h2>
+                    <div class="log-controls">
+                        <select id="log-filter" class="form-select">
+                            <option value="all">All Logs</option>
+                            <option value="high">High Energy Tasks</option>
+                            <option value="medium">Medium Energy Tasks</option>
+                            <option value="low">Low Energy Tasks</option>
+                        </select>
+                        <button class="btn btn-secondary" id="refresh-logs">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="logs-container">
+                    <div class="logs-table" id="logs-table">
+                        <!-- Logs will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <span>Loading...</span>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
