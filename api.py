@@ -203,9 +203,19 @@ def run_enhanced_scheduler():
         import sys
         from pathlib import Path
         
-        # Choose interpreter: prefer project venv if present
-        venv_python = str((Path(__file__).parent / '.venv' / 'bin' / 'python'))
-        python_exec = venv_python if os.path.exists(venv_python) else sys.executable
+        # Choose interpreter: prefer project venv if present (handle Windows vs POSIX)
+        def _resolve_python_exec() -> str:
+            base = Path(__file__).parent / '.venv'
+            if os.name == 'nt':
+                candidate = base / 'Scripts' / 'python.exe'
+            else:
+                candidate = base / 'bin' / 'python'
+            if candidate.exists():
+                return str(candidate)
+            # Fallbacks
+            return sys.executable
+
+        python_exec = _resolve_python_exec()
         
         # Launch in background so the request returns immediately
         log_file = os.path.join(os.getcwd(), 'enhanced_scheduler.log')
@@ -234,9 +244,19 @@ def run_energy_scheduler():
         import sys
         from pathlib import Path
         
-        # Choose interpreter: prefer project venv if present
-        venv_python = str((Path(__file__).parent / '.venv' / 'bin' / 'python'))
-        python_exec = venv_python if os.path.exists(venv_python) else sys.executable
+        # Choose interpreter: prefer project venv if present (handle Windows vs POSIX)
+        def _resolve_python_exec() -> str:
+            base = Path(__file__).parent / '.venv'
+            if os.name == 'nt':
+                candidate = base / 'Scripts' / 'python.exe'
+            else:
+                candidate = base / 'bin' / 'python'
+            if candidate.exists():
+                return str(candidate)
+            # Fallbacks
+            return sys.executable
+
+        python_exec = _resolve_python_exec()
         
         # Optional: accept execution settings from request body (e.g., sleep cap)
         exec_env = os.environ.copy()

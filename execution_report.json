@@ -1,0 +1,575 @@
+{
+  "execution_summary": {
+    "total_tasks": 37,
+    "completed": 37,
+    "deferred": 0,
+    "currently_executing": 0,
+    "completion_rate": 100.0
+  },
+  "energy_summary": {
+    "total_energy_used": 2325,
+    "total_energy_planned": 2325,
+    "energy_efficiency": 100.0,
+    "energy_capacity": 100
+  },
+  "system_conditions": {},
+  "completed_tasks": [
+    {
+      "task": {
+        "name": "conhost.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:09.900585",
+      "end_time": "2025-10-16 00:15:11.900985",
+      "actual_duration": 2.0004
+    },
+    {
+      "task": {
+        "name": "WebViewHost.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:11.901085",
+      "end_time": "2025-10-16 00:15:13.905246",
+      "actual_duration": 2.004161
+    },
+    {
+      "task": {
+        "name": "python.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:13.905398",
+      "end_time": "2025-10-16 00:15:15.905615",
+      "actual_duration": 2.000217
+    },
+    {
+      "task": {
+        "name": "RuntimeBroker.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:15.905743",
+      "end_time": "2025-10-16 00:15:17.906335",
+      "actual_duration": 2.000592
+    },
+    {
+      "task": {
+        "name": "svchost.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:17.906603",
+      "end_time": "2025-10-16 00:15:19.907259",
+      "actual_duration": 2.000656
+    },
+    {
+      "task": {
+        "name": "taskhostw.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:19.907450",
+      "end_time": "2025-10-16 00:15:21.908064",
+      "actual_duration": 2.000614
+    },
+    {
+      "task": {
+        "name": "Lively.Watchdog.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:21.908164",
+      "end_time": "2025-10-16 00:15:23.908377",
+      "actual_duration": 2.000213
+    },
+    {
+      "task": {
+        "name": "ShellHost.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:23.908472",
+      "end_time": "2025-10-16 00:15:25.909152",
+      "actual_duration": 2.00068
+    },
+    {
+      "task": {
+        "name": "MSPCManagerService.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:25.909409",
+      "end_time": "2025-10-16 00:15:27.909676",
+      "actual_duration": 2.000267
+    },
+    {
+      "task": {
+        "name": "powershell.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:27.909767",
+      "end_time": "2025-10-16 00:15:29.910400",
+      "actual_duration": 2.000633
+    },
+    {
+      "task": {
+        "name": "PhoneExperienceHost.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:29.910609",
+      "end_time": "2025-10-16 00:15:31.911106",
+      "actual_duration": 2.000497
+    },
+    {
+      "task": {
+        "name": "AppActions.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:31.911244",
+      "end_time": "2025-10-16 00:15:33.911584",
+      "actual_duration": 2.00034
+    },
+    {
+      "task": {
+        "name": "ctfmon.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:33.911890",
+      "end_time": "2025-10-16 00:15:35.912320",
+      "actual_duration": 2.00043
+    },
+    {
+      "task": {
+        "name": "CrossDeviceResume.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:35.912446",
+      "end_time": "2025-10-16 00:15:37.913021",
+      "actual_duration": 2.000575
+    },
+    {
+      "task": {
+        "name": "StartMenuExperienceHost.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:37.913107",
+      "end_time": "2025-10-16 00:15:39.913295",
+      "actual_duration": 2.000188
+    },
+    {
+      "task": {
+        "name": "WidgetService.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:39.913394",
+      "end_time": "2025-10-16 00:15:41.913681",
+      "actual_duration": 2.000287
+    },
+    {
+      "task": {
+        "name": "ApplicationFrameHost.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:41.913906",
+      "end_time": "2025-10-16 00:15:43.914097",
+      "actual_duration": 2.000191
+    },
+    {
+      "task": {
+        "name": "UserOOBEBroker.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:43.914238",
+      "end_time": "2025-10-16 00:15:45.914541",
+      "actual_duration": 2.000303
+    },
+    {
+      "task": {
+        "name": "Lively.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:45.914667",
+      "end_time": "2025-10-16 00:15:47.914921",
+      "actual_duration": 2.000254
+    },
+    {
+      "task": {
+        "name": "Lively.Player.WebView2.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:47.915043",
+      "end_time": "2025-10-16 00:15:49.915475",
+      "actual_duration": 2.000432
+    },
+    {
+      "task": {
+        "name": "Widgets.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:49.915900",
+      "end_time": "2025-10-16 00:15:51.916267",
+      "actual_duration": 2.000367
+    },
+    {
+      "task": {
+        "name": "SearchHost.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:51.916373",
+      "end_time": "2025-10-16 00:15:53.916727",
+      "actual_duration": 2.000354
+    },
+    {
+      "task": {
+        "name": "SmartByteTelemetry.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:53.916837",
+      "end_time": "2025-10-16 00:15:55.917462",
+      "actual_duration": 2.000625
+    },
+    {
+      "task": {
+        "name": "backgroundTaskHost.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:55.917682",
+      "end_time": "2025-10-16 00:15:57.917944",
+      "actual_duration": 2.000262
+    },
+    {
+      "task": {
+        "name": "sihost.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:57.918250",
+      "end_time": "2025-10-16 00:15:59.918663",
+      "actual_duration": 2.000413
+    },
+    {
+      "task": {
+        "name": "igfxEMN.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:15:59.918767",
+      "end_time": "2025-10-16 00:16:01.919046",
+      "actual_duration": 2.000279
+    },
+    {
+      "task": {
+        "name": "SDXHelper.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:16:01.919144",
+      "end_time": "2025-10-16 00:16:03.919445",
+      "actual_duration": 2.000301
+    },
+    {
+      "task": {
+        "name": "SearchProtocolHost.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 25,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:16:03.919564",
+      "end_time": "2025-10-16 00:16:05.920966",
+      "actual_duration": 2.001402
+    },
+    {
+      "task": {
+        "name": "Taskmgr.exe",
+        "duration": 5
+      },
+      "energy_data": {
+        "total_energy": 75,
+        "energy_per_second": 15,
+        "energy_level": "medium",
+        "duration": 5
+      },
+      "start_time": "2025-10-16 00:16:05.921493",
+      "end_time": "2025-10-16 00:16:07.922468",
+      "actual_duration": 2.000975
+    },
+    {
+      "task": {
+        "name": "Cursor.exe",
+        "duration": 10
+      },
+      "energy_data": {
+        "total_energy": 50,
+        "energy_per_second": 5,
+        "energy_level": "low",
+        "duration": 10
+      },
+      "start_time": "2025-10-16 00:16:07.922664",
+      "end_time": "2025-10-16 00:16:09.923143",
+      "actual_duration": 2.000479
+    },
+    {
+      "task": {
+        "name": "msedgewebview2.exe",
+        "duration": 10
+      },
+      "energy_data": {
+        "total_energy": 150,
+        "energy_per_second": 15,
+        "energy_level": "medium",
+        "duration": 10
+      },
+      "start_time": "2025-10-16 00:16:09.923400",
+      "end_time": "2025-10-16 00:16:11.924461",
+      "actual_duration": 2.001061
+    },
+    {
+      "task": {
+        "name": "audiodg.exe",
+        "duration": 10
+      },
+      "energy_data": {
+        "total_energy": 150,
+        "energy_per_second": 15,
+        "energy_level": "medium",
+        "duration": 10
+      },
+      "start_time": "2025-10-16 00:16:11.924682",
+      "end_time": "2025-10-16 00:16:13.931885",
+      "actual_duration": 2.007203
+    },
+    {
+      "task": {
+        "name": "TextInputHost.exe",
+        "duration": 10
+      },
+      "energy_data": {
+        "total_energy": 150,
+        "energy_per_second": 15,
+        "energy_level": "medium",
+        "duration": 10
+      },
+      "start_time": "2025-10-16 00:16:13.937011",
+      "end_time": "2025-10-16 00:16:15.937379",
+      "actual_duration": 2.000368
+    },
+    {
+      "task": {
+        "name": "explorer.exe",
+        "duration": 11
+      },
+      "energy_data": {
+        "total_energy": 165,
+        "energy_per_second": 15,
+        "energy_level": "medium",
+        "duration": 11
+      },
+      "start_time": "2025-10-16 00:16:15.937623",
+      "end_time": "2025-10-16 00:16:17.938301",
+      "actual_duration": 2.000678
+    },
+    {
+      "task": {
+        "name": "SnippingTool.exe",
+        "duration": 14
+      },
+      "energy_data": {
+        "total_energy": 210,
+        "energy_per_second": 15,
+        "energy_level": "medium",
+        "duration": 14
+      },
+      "start_time": "2025-10-16 00:16:17.938525",
+      "end_time": "2025-10-16 00:16:19.939245",
+      "actual_duration": 2.00072
+    },
+    {
+      "task": {
+        "name": "WhatsApp.exe",
+        "duration": 15
+      },
+      "energy_data": {
+        "total_energy": 225,
+        "energy_per_second": 15,
+        "energy_level": "medium",
+        "duration": 15
+      },
+      "start_time": "2025-10-16 00:16:19.939549",
+      "end_time": "2025-10-16 00:16:21.939927",
+      "actual_duration": 2.000378
+    },
+    {
+      "task": {
+        "name": "msedge.exe",
+        "duration": 30
+      },
+      "energy_data": {
+        "total_energy": 450,
+        "energy_per_second": 15,
+        "energy_level": "medium",
+        "duration": 30
+      },
+      "start_time": "2025-10-16 00:16:21.940170",
+      "end_time": "2025-10-16 00:16:23.940391",
+      "actual_duration": 2.000221
+    }
+  ],
+  "deferred_tasks": [],
+  "currently_executing": []
+}
