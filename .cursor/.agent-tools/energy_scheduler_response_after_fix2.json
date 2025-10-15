@@ -1,0 +1,1 @@
+{"error":"Traceback (most recent call last):\n  File \"/Users/ayesha/untitled folder/EcoScheduler/energy_scheduler.py\", line 6, in <module>\n    import psutil\nModuleNotFoundError: No module named 'psutil'\n","message":"Energy scheduler failed","output":"","success":false}

@@ -132,7 +132,11 @@ class EnhancedEcoScheduler:
         print(f"🔹 Executing {task['name']} ({duration}s)")
         
         # Simulate task execution
-        time.sleep(min(duration, 2))  # Cap at 2 seconds for demo
+        try:
+            sleep_cap_seconds = float(os.getenv('EXEC_SLEEP_CAP_SECONDS', '2'))
+        except ValueError:
+            sleep_cap_seconds = 2.0
+        time.sleep(min(duration, sleep_cap_seconds))
         
         return True
     

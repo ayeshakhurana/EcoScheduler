@@ -196,75 +196,80 @@ def get_active_processes():
 
 @app.route("/api/run-enhanced-scheduler", methods=['POST'])
 def run_enhanced_scheduler():
-    """Run the enhanced scheduler with dynamic adaptation"""
+    """Start the enhanced scheduler asynchronously and return immediately"""
     try:
         import subprocess
         import os
+        import sys
+        from pathlib import Path
         
-        # Run the enhanced scheduler
-        result = subprocess.run(['python', 'enhanced_scheduler.py'], 
-                              capture_output=True, text=True, cwd=os.getcwd())
+        # Choose interpreter: prefer project venv if present
+        venv_python = str((Path(__file__).parent / '.venv' / 'bin' / 'python'))
+        python_exec = venv_python if os.path.exists(venv_python) else sys.executable
         
-        if result.returncode == 0:
-            return jsonify({
-                'success': True,
-                'message': 'Enhanced scheduler completed successfully',
-                'output': result.stdout,
-                'error': result.stderr
-            })
-        else:
-            return jsonify({
-                'success': False,
-                'message': 'Enhanced scheduler failed',
-                'output': result.stdout,
-                'error': result.stderr
-            }), 500
+        # Launch in background so the request returns immediately
+        log_file = os.path.join(os.getcwd(), 'enhanced_scheduler.log')
+        with open(log_file, 'a') as lf:
+            subprocess.Popen([python_exec, 'enhanced_scheduler.py'], cwd=os.getcwd(), stdout=lf, stderr=lf)
+        
+        return jsonify({
+            'success': True,
+            'message': 'Enhanced scheduler started',
+            'log': 'enhanced_scheduler.log'
+        })
             
     except Exception as e:
         return jsonify({
             'success': False,
-            'message': f'Error running enhanced scheduler: {str(e)}'
+            'message': f'Error starting enhanced scheduler: {str(e)}'
         }), 500
 
 @app.route("/api/run-energy-scheduler", methods=['POST'])
 def run_energy_scheduler():
-    """Run the energy-based scheduler with Gantt chart generation"""
+    """Start the energy-based scheduler async; poll /api/schedule-status for results"""
     try:
         import subprocess
         import os
         import json
+        import sys
+        from pathlib import Path
         
-        # Run the energy scheduler
-        result = subprocess.run(['python', 'energy_scheduler.py'], 
-                              capture_output=True, text=True, cwd=os.getcwd())
+        # Choose interpreter: prefer project venv if present
+        venv_python = str((Path(__file__).parent / '.venv' / 'bin' / 'python'))
+        python_exec = venv_python if os.path.exists(venv_python) else sys.executable
         
-        # Load execution report if available
-        execution_report = None
-        if os.path.exists('execution_report.json'):
-            with open('execution_report.json', 'r') as f:
-                execution_report = json.load(f)
+        # Optional: accept execution settings from request body (e.g., sleep cap)
+        exec_env = os.environ.copy()
+        try:
+            body = request.get_json(silent=True) or {}
+            if 'sleep_cap_seconds' in body:
+                exec_env['EXEC_SLEEP_CAP_SECONDS'] = str(float(body['sleep_cap_seconds']))
+        except Exception:
+            pass
+
+        # Clear old artifacts to reflect a fresh run
+        for artifact in ['execution_report.json', 'task_schedule_gantt.png']:
+            try:
+                if os.path.exists(artifact):
+                    os.remove(artifact)
+            except Exception:
+                pass
         
-        if result.returncode == 0:
-            return jsonify({
-                'success': True,
-                'message': 'Energy scheduler completed successfully',
-                'output': result.stdout,
-                'error': result.stderr,
-                'execution_report': execution_report,
-                'gantt_chart': 'task_schedule_gantt.png' if os.path.exists('task_schedule_gantt.png') else None
-            })
-        else:
-            return jsonify({
-                'success': False,
-                'message': 'Energy scheduler failed',
-                'output': result.stdout,
-                'error': result.stderr
-            }), 500
+        # Launch scheduler in background and log output
+        log_file = os.path.join(os.getcwd(), 'energy_scheduler.log')
+        with open(log_file, 'a') as lf:
+            subprocess.Popen([python_exec, 'energy_scheduler.py'], cwd=os.getcwd(), stdout=lf, stderr=lf, env=exec_env)
+        
+        return jsonify({
+            'success': True,
+            'message': 'Energy scheduler started',
+            'log': 'energy_scheduler.log'
+        })
             
     except Exception as e:
         return jsonify({
             'success': False,
-            'message': f'Error running energy scheduler: {str(e)}'
+            'message': f'Error starting energy scheduler: {str(e)}'
         }), 500
 
 @app.route("/api/schedule-status")
@@ -308,4 +313,4 @@ def get_gantt_chart():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)

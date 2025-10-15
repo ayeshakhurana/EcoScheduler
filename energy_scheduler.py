@@ -4,6 +4,7 @@ import json
 import time
 import threading
 import psutil
+import os
 from datetime import datetime, timedelta
 from collections import defaultdict, deque
 try:
@@ -410,7 +411,11 @@ class EnergyBasedScheduler:
                     execution_stats['executing'] += 1
                     
                     # Simulate task execution (replace with actual task execution)
-                    time.sleep(min(energy_data['duration'], 2))  # Cap at 2 seconds for demo
+                    try:
+                        sleep_cap_seconds = float(os.getenv('EXEC_SLEEP_CAP_SECONDS', '2'))
+                    except ValueError:
+                        sleep_cap_seconds = 2.0
+                    time.sleep(min(energy_data['duration'], sleep_cap_seconds))
                     
                     execution_end = datetime.now()
                     execution_time = (execution_end - execution_start).total_seconds()

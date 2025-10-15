@@ -297,6 +297,7 @@ class EcoSchedulerDashboard {
         setInterval(() => {
             this.loadSystemStatus();
             this.loadLogs();
+            this.loadScheduleStatus();
         }, this.updateInterval);
     }
 
@@ -441,16 +442,22 @@ class EcoSchedulerDashboard {
             const result = await response.json();
             
             if (result.success) {
-                this.showNotification('Task scheduling completed successfully!', 'success');
-                
-                // Reload schedule status and tasks
-                await this.loadScheduleStatus();
+                this.showNotification('Scheduling started. Finalizing plan...', 'info');
+
+                // Poll until schedule is ready, then refresh UI
+                await this.pollForSchedule(40, 1500);
                 await this.loadTasks();
-                
-                // Show execution report if available
-                if (result.execution_report) {
-                    this.displayExecutionReport(result.execution_report);
+                await this.loadScheduleStatus();
+
+                // If Gantt is visible, force refresh image (cache-bust)
+                const ganttContainer = document.getElementById('gantt-container');
+                if (ganttContainer && ganttContainer.style.display === 'block') {
+                    const ganttImg = document.getElementById('gantt-chart');
+                    if (ganttImg) {
+                        ganttImg.src = '/api/gantt-chart?' + Date.now();
+                    }
                 }
+                this.showNotification('Task scheduling completed successfully!', 'success');
             } else {
                 this.showNotification(`Scheduling failed: ${result.message}`, 'error');
             }
@@ -463,6 +470,22 @@ class EcoSchedulerDashboard {
             button.innerHTML = originalText;
             button.disabled = false;
         }
+    }
+
+    async pollForSchedule(maxAttempts = 30, intervalMs = 2000) {
+        for (let attempt = 0; attempt < maxAttempts; attempt++) {
+            try {
+                const res = await fetch('/api/schedule-status');
+                const data = await res.json();
+                if (data && data.has_schedule && data.execution_report) {
+                    return true;
+                }
+            } catch (e) {
+                // ignore transient errors and retry
+            }
+            await new Promise(r => setTimeout(r, intervalMs));
+        }
+        return false;
     }
 
     async loadScheduleStatus() {
